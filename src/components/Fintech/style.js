@@ -7,7 +7,6 @@ var {StyleSheet} = React;
 module.exports = StyleSheet.create({
   body: {
     flexDirection: 'column',
-    paddingHorizontal: 15,
     flex: 1,
   },
 
@@ -33,23 +32,25 @@ module.exports = StyleSheet.create({
     flexDirection: 'column',
   },
 
-  searchBox: {
-    marginBottom: 10,
+  searchView: {
+    marginVertical: 22,
   },
 
-  search: {
-    height: 42,
-    borderRadius: 20,
+  searchInput: {
+    height: 43,
     paddingHorizontal: 15,
     paddingVertical: 1,
-    elevation: 2,
+    marginHorizontal: 20,
+    borderRadius: 20,
+    elevation: 1,
   },
 
   fintechList: {
     flex: 1,
+    marginHorizontal: 15,
     marginVertical: 10,
     paddingVertical: 15,
-    paddingHorizontal: 8,
+    paddingHorizontal: 10,
     backgroundColor: '#fff',
     flexDirection: 'row',
     borderBottomColor: '#f3f3f3',

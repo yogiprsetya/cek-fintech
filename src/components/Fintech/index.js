@@ -1,4 +1,4 @@
-import React, {PureComponent} from 'react';
+import React, {Component} from 'react';
 import {
   Text,
   View,
@@ -10,32 +10,57 @@ import {
   Button,
   FlatList,
 } from 'react-native';
+import SearchInput, {createFilter} from 'react-native-search-filter';
+import fintechList from './list-fintech';
+import {createDrawerNavigator, DrawerActions} from 'react-navigation-drawer';
 import s from './style';
+const KEYS_TO_FILTERS = ['nama', 'pt'];
 
-export default class PokeList extends PureComponent {
-  // const [value, onChangeText = React.useState('Cari nama fintech')
-
+export default class App extends React.Component<{}> {
   constructor(props) {
     super(props);
     this.state = {
-      data: require('./list-fintech.json'),
+      searchTerm: '',
     };
   }
 
-  render() {
-    const {data} = this.state;
+  static navigationOptions = {
+    title: 'Fintech',
+  };
 
+  searchUpdated(term) {
+    this.setState({searchTerm: term});
+  }
+
+  render() {
+    const filteredintechs = fintechList.filter(
+      createFilter(this.state.searchTerm, KEYS_TO_FILTERS),
+    );
     return (
       <SafeAreaView style={s.body}>
-        <View style={s.searchBox}>
-          <TextInput style={s.search} placeholder={'Cari nama fintech'} />
+        <View style={s.searchView}>
+          {/* <Button
+            title={'TEST'}
+            onPress={() =>
+              this.props.navigation.dispatch(DrawerActions.toggleDrawer())
+            }
+          /> */}
+          <SearchInput
+            onChangeText={term => {
+              this.searchUpdated(term);
+            }}
+            style={[s.searchInput, s.fontReg]}
+            placeholder="Cari nama fintech"
+          />
+          <Image
+            style={{marginTop: 8, right: 31, position: 'absolute'}}
+            source={require('../../../assets/icon/search.png')}
+          />
         </View>
-        <FlatList
-          data={data}
-          keyExtractor={(item, index) => index.toString()}
-          renderItem={({item, index}) => {
+        <ScrollView>
+          {filteredintechs.map(item => {
             return (
-              <View style={s.fintechList}>
+              <View style={s.fintechList} key={item.nama}>
                 <View style={s.flexColumn}>
                   <View width={230}>
                     <Text style={[s.fintechBrand, s.fontBold]}>
@@ -94,8 +119,30 @@ export default class PokeList extends PureComponent {
                 </View>
               </View>
             );
-          }}></FlatList>
+          })}
+        </ScrollView>
       </SafeAreaView>
     );
   }
 }
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     backgroundColor: '#fff',
+//     justifyContent: 'flex-start',
+//   },
+//   emailItem: {
+//     borderBottomWidth: 0.5,
+//     borderColor: 'rgba(0,0,0,0.3)',
+//     padding: 10,
+//   },
+//   emailSubject: {
+//     color: 'rgba(0,0,0,0.5)',
+//   },
+//   searchInput: {
+//     padding: 10,
+//     borderColor: '#CCC',
+//     borderWidth: 1,
+//   },
+// });
