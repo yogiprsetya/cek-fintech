@@ -1,55 +1,75 @@
-import React, {Component} from 'react';
-import {View, Image, TouchableOpacity} from 'react-native';
-
-//For React Navigation 4+
-import {createAppContainer} from 'react-navigation';
-import {createDrawerNavigator} from 'react-navigation-drawer';
-import {createStackNavigator} from 'react-navigation-stack';
-import Fintech from './src/components/Fintech';
+import React, { Component } from 'react'
+import { View, Image, TouchableOpacity } from 'react-native'
+import { createAppContainer } from 'react-navigation'
+import { createDrawerNavigator } from 'react-navigation-drawer'
+import { createStackNavigator } from 'react-navigation-stack'
+import Fintech from './src/components/Fintech'
+import About from './src/components/About'
 
 class NavigationDrawerStructure extends Component {
   toggleDrawer = () => {
-    this.props.navigationProps.toggleDrawer();
-  };
+    this.props.navigationProps.toggleDrawer()
+  }
 
   render() {
     return (
-      <View style={{flexDirection: 'row'}}>
+      <View style={{ flexDirection: 'row' }}>
         <TouchableOpacity onPress={this.toggleDrawer.bind(this)}>
           <Image
             source={require('./assets/icon/drawer.png')}
-            style={{width: 25, height: 25, marginLeft: 5}}
+            style={{ width: 33, height: 33, marginLeft: 6 }}
           />
         </TouchableOpacity>
       </View>
-    );
+    )
   }
 }
 
-const FirstActivity_StackNavigator = createStackNavigator({
-  //All the screen from the Screen1 will be indexed here
+const Fintechs = createStackNavigator({
   First: {
     screen: Fintech,
-    navigationOptions: ({navigation}) => ({
+    navigationOptions: ({ navigation }) => ({
       title: 'Fintech',
       headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
       headerStyle: {
-        backgroundColor: '#FF9800',
+        elevation: 0,
+        borderBottomWidth: 0
       },
-      headerTintColor: '#fff',
-    }),
-  },
-});
+      headerTintColor: '#2b2b2b',
+      headerTitleStyle: {
+        fontWeight: 'bold'
+      }
+    })
+  }
+})
 
-const DrawerNavigatorExample = createDrawerNavigator({
-  //Drawer Optons and indexing
-  Fintech: {
-    //Title
-    screen: FirstActivity_StackNavigator,
-    navigationOptions: {
-      drawerLabel: 'Demo Screen 1',
-    },
-  },
-});
+const Abouts = createStackNavigator({
+  Second: {
+    screen: About,
+    navigationOptions: ({ navigation }) => ({
+      title: 'About',
+      headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+      headerStyle: {
+        elevation: 0,
+        borderBottomWidth: 0
+      },
+      headerTintColor: '#2b2b2b',
+      headerTitleStyle: {
+        fontWeight: 'bold'
+      }
+    })
+  }
+})
 
-export default createAppContainer(DrawerNavigatorExample);
+const RootStack = createDrawerNavigator(
+  {
+    Fintech: { screen: Fintechs },
+    About: { screen: Abouts }
+  },
+  {
+    initialRouteName: 'Fintech'
+  }
+)
+
+const App = createAppContainer(RootStack)
+export default App
