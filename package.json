@@ -1,6 +1,7 @@
 {
     "name": "fintech",
     "version": "0.0.1",
+    "description": "Seokitk@t13",
     "private": true,
     "scripts": {
         "android": "react-native run-android",
