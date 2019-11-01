@@ -3,8 +3,9 @@ import { View, Image, TouchableOpacity } from 'react-native'
 import { createAppContainer } from 'react-navigation'
 import { createDrawerNavigator } from 'react-navigation-drawer'
 import { createStackNavigator } from 'react-navigation-stack'
-import Fintech from './src/components/Fintech'
-import About from './src/components/About'
+import Fintech from './src/screen/Fintech'
+import About from './src/screen/About'
+import CustomStatusBar from './src/components/StatusBar';
 
 class NavigationDrawerStructure extends Component {
   toggleDrawer = () => {
@@ -14,6 +15,8 @@ class NavigationDrawerStructure extends Component {
   render() {
     return (
       <View style={{ flexDirection: 'row' }}>
+        <CustomStatusBar backgroundColor="#31ca94" barStyle="light-content"/>
+
         <TouchableOpacity onPress={this.toggleDrawer.bind(this)}>
           <Image
             source={require('./assets/icon/drawer.png')}
