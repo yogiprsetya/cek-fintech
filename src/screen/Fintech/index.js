@@ -9,11 +9,10 @@ import {
 } from 'react-native'
 import SearchInput, { createFilter } from 'react-native-search-filter'
 import fintechList from './list-fintech'
-import { createDrawerNavigator } from 'react-navigation-drawer'
 import s from '../../style'
 const KEYS_TO_FILTERS = ['nama', 'pt']
 
-export default class Fintech extends Component<{}> {
+export default class Fintech extends Component {
   constructor(props) {
     super(props)
     this.state = {
