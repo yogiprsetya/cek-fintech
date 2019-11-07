@@ -15,7 +15,7 @@ export default class About extends Component {
           terdaftar menjadi berizin yaitu, Modalku, KTA Kilat, Kredit Pintar,
           Maucash, Finmas, dan KlikACC.
         </Text>
-        <Text>
+        <Text style={s.fontReg}>
           OJK mengimbau masyarakat untuk menggunakan jasa penyelenggaran fintech
           peer to peer lending yang sudah terdaftar/berizin dari OJK.
         </Text>

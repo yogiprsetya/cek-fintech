@@ -10,14 +10,6 @@ module.exports = StyleSheet.create({
     flex: 1
   },
 
-  fontBold: {
-    fontFamily: 'Montserrat-Bold'
-  },
-
-  fontSemiBold: {
-    fontFamily: 'Montserrat-SemiBold'
-  },
-
   fontReg: {
     fontFamily: 'Montserrat-Regular'
   },

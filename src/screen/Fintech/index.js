@@ -54,10 +54,10 @@ export default class Fintech extends Component<{}> {
               <View style={s.fintechList} key={item.nama}>
                 <View style={s.flexColumn}>
                   <View width={230}>
-                    <Text style={[s.fintechBrand, s.fontBold]}>
+                    <Text style={[s.fintechBrand, s.fontReg, {fontWeight: 'bold'}]}>
                       {item.nama}
                     </Text>
-                    <Text style={s.fontSemiBold}>{item.pt}</Text>
+                    <Text style={[s.fontReg, {fontWeight: 'bold'}]}>{item.pt}</Text>
                   </View>
 
                   <View
@@ -69,40 +69,37 @@ export default class Fintech extends Component<{}> {
                     }}>
                     <Text style={s.fontReg}>{item.no}</Text>
                     <Text
-                      style={s.fontReg}
                       onPress={() => Linking.openURL(item.web)}
-                      style={{ textAlign: 'right', color: '#30ca94' }}>
+                      style={[s.fontReg, { textAlign: 'right', color: '#30ca94' }]}>
                       More Info
                     </Text>
                   </View>
 
-                  <View style={{ marginTop: 15 }}>
+                  <View style={[s.flexRow, { marginTop: 15 }]}>
                     <View style={s.flexRow}>
-                      <View style={s.flexRow}>
-                        <Image
-                          style={s.checkIcon}
-                          source={
-                            item.jenisK == 1
-                              ? require('../../../assets/icon/checkPrimary.png')
-                              : require('../../../assets/icon/checkSecondary.png')
-                          }
-                        />
-                        <Text style={[s.fontReg, { width: 100 }]}>
-                          Konvensional
-                        </Text>
-                      </View>
+                      <Image
+                        style={s.checkIcon}
+                        source={
+                          item.jenisK == 1
+                            ? require('../../../assets/icon/checkPrimary.png')
+                            : require('../../../assets/icon/checkSecondary.png')
+                        }
+                      />
+                      <Text style={s.fontReg}>
+                        Konvensional
+                      </Text>
+                    </View>
 
-                      <View style={s.flexRow}>
-                        <Image
-                          style={s.checkIcon}
-                          source={
-                            item.jenisS == 1
-                              ? require('../../../assets/icon/checkPrimary.png')
-                              : require('../../../assets/icon/checkSecondary.png')
-                          }
-                        />
-                        <Text style={[s.fontReg, { width: 70 }]}>Syariah</Text>
-                      </View>
+                    <View style={s.flexRow}>
+                      <Image
+                        style={s.checkIcon}
+                        source={
+                          item.jenisS == 1
+                            ? require('../../../assets/icon/checkPrimary.png')
+                            : require('../../../assets/icon/checkSecondary.png')
+                        }
+                      />
+                      <Text style={s.fontReg}>Syariah</Text>
                     </View>
                   </View>
                 </View>
